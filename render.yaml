@@ -1,0 +1,19 @@
+services:
+  - name: cloud-app
+    type: web
+    runtime: node
+    buildCommand: npm install
+    startCommand: npm start
+    plan: free
+    repo: https://github.com/ArchOrn/egsi_iabd1_2024_render_bp
+    region: frankfurt
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: cloud-db
+          property: connectionString
+
+databases:
+  - name: cloud-db
+    plan: free
+    region: frankfurt
